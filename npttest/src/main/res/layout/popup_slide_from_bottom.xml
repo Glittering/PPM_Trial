@@ -35,7 +35,7 @@
                     android:gravity="center"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"
-                    android:text="现金"/>
+                    android:text="@string/cash"/>
             </LinearLayout>
             <View
                 style="@style/line_style"/>
@@ -58,7 +58,7 @@
                     android:gravity="center"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"
-                    android:text="微信"/>
+                    android:text="@string/WeChat"/>
             </LinearLayout>
             <View
                 style="@style/line_style"/>
@@ -81,7 +81,7 @@
                     android:gravity="center"
                     android:textSize="15sp"
                     android:layout_marginLeft="5dp"
-                    android:text="支付宝"/>
+                    android:text="@string/Alipay"/>
             </LinearLayout>
 
         </LinearLayout>

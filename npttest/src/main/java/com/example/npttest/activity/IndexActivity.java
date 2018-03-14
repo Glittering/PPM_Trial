@@ -1,5 +1,6 @@
 package com.example.npttest.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -133,6 +134,8 @@ public class IndexActivity extends BaseActivity {
     LinearLayout indexHelp;
     @Bind(R.id.index_aboutus)
     LinearLayout indexAboutus;
+    @Bind(R.id.index_language)
+    LinearLayout indexLanguage;
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentPagerAdapter fragmentPagerAdapter;
@@ -147,9 +150,9 @@ public class IndexActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index);
         ButterKnife.bind(this);
-        indexActivity=this;
-        App.serverurl=(String) SPUtils.get(IndexActivity.this, Constant.URL, "");
-        Log.e("TAG", "主页服务器地址"+App.serverurl+"设备code:"+Constant.CODE);
+        indexActivity = this;
+        App.serverurl = (String) SPUtils.get(IndexActivity.this, Constant.URL, "");
+        Log.e("TAG", "主页服务器地址" + App.serverurl + "设备code:" + Constant.CODE);
         car_depot(App.serverurl);
         //get_quantity(App.serverurl);
         indexVp.setOffscreenPageLimit(2);
@@ -207,7 +210,7 @@ public class IndexActivity extends BaseActivity {
     //获取天气
     private void getweather(String jindu, String weidu) {
 
-        Log.e("TAG","正在获取天气");
+        Log.e("TAG", "正在获取天气");
         String url = "http://jisutianqi.market.alicloudapi.com/weather/query";
         String appcode = "1d737752e21e44598c9eb8acf7ae2165";
         OkHttpUtils.get().url(url)
@@ -216,12 +219,12 @@ public class IndexActivity extends BaseActivity {
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Log.e("TAG","获取天气异常"+e);
+                Log.e("TAG", "获取天气异常" + e);
             }
 
             @Override
             public void onResponse(String response, int id) {
-                Log.e("TAG","获取天气返回结果："+response);
+                Log.e("TAG", "获取天气返回结果：" + response);
                 try {
                     JSONObject rjsonObject = new JSONObject(response);
                     String msg = rjsonObject.getString("msg");
@@ -246,7 +249,7 @@ public class IndexActivity extends BaseActivity {
                     indexWeatherCity.setText(city);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.e("TAG","获取天气抛出异常"+e);
+                    Log.e("TAG", "获取天气抛出异常" + e);
                 }
 
             }
@@ -259,8 +262,8 @@ public class IndexActivity extends BaseActivity {
             R.id.index_aboutme_img, R.id.index_home_lin, R.id.index_record_lin,
             R.id.index_aboutme_lin, R.id.index_shift_lin,
             R.id.index_logout_lin, R.id.index_offwork_lin, R.id.index_weather_lin, R.id.index_user,
-            R.id.index_search, R.id.index_propo, R.id.index_qrcode,R.id.index_clean, R.id.index_update,
-            R.id.index_help, R.id.index_aboutus})
+            R.id.index_search, R.id.index_propo, R.id.index_qrcode, R.id.index_clean, R.id.index_update,
+            R.id.index_help, R.id.index_aboutus,R.id.index_language})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.index_menu_img:
@@ -334,10 +337,10 @@ public class IndexActivity extends BaseActivity {
                 break;
             case R.id.index_offwork_lin:
                 String wmon = String.format("%.2f", App.wmon / 100);
-                if (Constant.domeLoginBoo){
+                if (Constant.domeLoginBoo) {
                     AlertDialog.Builder offDialog = new AlertDialog.Builder(IndexActivity.this);
                     offDialog.setTitle(getString(R.string.reminder));
-                    offDialog.setMessage(getString(R.string.check_the_total_fee_before_work)+wmon+getString(R.string.to_get_off_work));
+                    offDialog.setMessage(getString(R.string.check_the_total_fee_before_work) + wmon + getString(R.string.to_get_off_work));
                     offDialog.setPositiveButton(getString(R.string.submit),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -346,13 +349,13 @@ public class IndexActivity extends BaseActivity {
                                     String jsons = "{\"cmd\":\"150\",\"type\":\"" + Constant.TYPE + "\",\"code\":\"" + Constant.CODE + "\",\"dsv\":\"" + Constant.DSV + "\"," +
                                             "\"ltype\":\"0\",\"user\":\"" + Constant.testusername + "\",\"pass\":\"" + MD5Utils.encode(Constant.testuserpwd) + "\"," +
                                             "\"emon\":\"0\",\"sign\":\"abcd\"}";
-                                    offWork(Constant.DOMEURL,jsons);
+                                    offWork(Constant.DOMEURL, jsons);
                                 }
                             });
                     offDialog.setNegativeButton(getString(R.string.cancel), null);
                     // 显示
                     offDialog.show();
-                }else {
+                } else {
                     startActivity(new Intent(IndexActivity.this, OffworkActivity.class));
                 }
                 break;
@@ -372,14 +375,14 @@ public class IndexActivity extends BaseActivity {
                 startActivity(new Intent(IndexActivity.this, QrCodeActivity.class));
                 break;
             case R.id.index_clean:
-                String compressfileSize=FileSizeUtil.getAutoFileOrFilesSize(Constant.compressPath);
-                String nocompressPathfileSize=FileSizeUtil.getAutoFileOrFilesSize(Constant.nocompressPath);
-                Log.e("TAG","要清理的文件大小："+nocompressPathfileSize);
+                String compressfileSize = FileSizeUtil.getAutoFileOrFilesSize(Constant.compressPath);
+                String nocompressPathfileSize = FileSizeUtil.getAutoFileOrFilesSize(Constant.nocompressPath);
+                Log.e("TAG", "要清理的文件大小：" + nocompressPathfileSize);
                 DataCleanManager.cleanCustomCache(Constant.compressPath);
                 DataCleanManager.cleanCustomCache(Constant.nocompressPath);
-                Log.e("TAG",Constant.compressPath);
-                Log.e("TAG",Constant.nocompressPath);
-                Toasty.info(IndexActivity.this,getString(R.string.clean_up_successfully)+nocompressPathfileSize+getString(R.string.cache),Toast.LENGTH_SHORT,true).show();
+                Log.e("TAG", Constant.compressPath);
+                Log.e("TAG", Constant.nocompressPath);
+                Toasty.info(IndexActivity.this, getString(R.string.clean_up_successfully) + nocompressPathfileSize + getString(R.string.cache), Toast.LENGTH_SHORT, true).show();
                 break;
             case R.id.index_update:
                 //Toast.makeText(this, "已是最新版本", Toast.LENGTH_SHORT).show();
@@ -401,11 +404,14 @@ public class IndexActivity extends BaseActivity {
                 //Toast.makeText(this, "稍后开放，请耐心等待更新", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(IndexActivity.this, AboutUs.class));
                 break;
+            case R.id.index_language:
+                startActivity(new Intent(IndexActivity.this, ChoiceOfLanguage.class));
+                break;
         }
     }
 
     //下班
-    private void offWork(String url,String jsons) {
+    private void offWork(String url, String jsons) {
         dialog = new ZLoadingDialog(IndexActivity.this);
         dialog.setLoadingBuilder(Z_TYPE.LEAF_ROTATE)//设置类型STAR_LOADING 五角星
                 .setLoadingColor(Color.parseColor("#55BEB7"))//颜色
@@ -415,20 +421,20 @@ public class IndexActivity extends BaseActivity {
                 .setHintTextColor(Color.GRAY)  // 设置字体颜色
                 .show();
 
-        Log.e("TAG", "主页下班命令"+jsons);
+        Log.e("TAG", "主页下班命令" + jsons);
         OkHttpUtils.postString().url(url)
                 .content(jsons)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
                 .build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                Toast.makeText(IndexActivity.this,getString(R.string.please_check_the_network), Toast.LENGTH_SHORT).show();
+                Toast.makeText(IndexActivity.this, getString(R.string.please_check_the_network), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onResponse(String response, int id) {
                 dialog.dismiss();
-                Log.e("TAG", "主页下班返回结果："+response);
+                Log.e("TAG", "主页下班返回结果：" + response);
                 JSONObject rpjson = null;
                 try {
                     rpjson = new JSONObject(response);
@@ -437,8 +443,8 @@ public class IndexActivity extends BaseActivity {
                     int lrs = datajson.getInt("lrs");
                     if (lrs == 0) {
                         //SPUtils.clear(OffworkActivity.this);
-                        SPUtils.put(IndexActivity.this, "domeloginboo",false);
-                        Constant.domeLoginBoo=false;
+                        SPUtils.put(IndexActivity.this, "domeloginboo", false);
+                        Constant.domeLoginBoo = false;
                         //dialog.dismiss();
                         Toasty.success(IndexActivity.this, getString(R.string.get_off_work_success), Toast.LENGTH_SHORT, true).show();
                         startActivity(new Intent(IndexActivity.this, LoginActivity.class));
@@ -473,7 +479,7 @@ public class IndexActivity extends BaseActivity {
     //获取停车场信息
     private void car_depot(String url) {
         String jsons = "{\"cmd\":\"153\",\"type\":\"" + Constant.TYPE + "\",\"code\":\"" + Constant.CODE + "\",\"dsv\":\"" + Constant.DSV + "\",\"spare\":\"\",\"sign\":\"abcd\"}";
-        Log.e("TAG", "获取停车场信息命令："+jsons);
+        Log.e("TAG", "获取停车场信息命令：" + jsons);
         OkHttpUtils.postString().url(url)
                 .content(jsons)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -487,29 +493,29 @@ public class IndexActivity extends BaseActivity {
             @Override
             public void onResponse(String response, int id) {
                 //Toasty.success(SpalshActivity.this, "操作失败", Toast.LENGTH_SHORT, true).show();
-                Log.e("TAG", "获取停车场信息返回数据："+response);
+                Log.e("TAG", "获取停车场信息返回数据：" + response);
                 try {
                     JSONObject rpjson = new JSONObject(response);
                     String reasonjson = rpjson.getString("reason");
                     JSONObject resultjson = rpjson.getJSONObject("result");
                     JSONObject datajson = resultjson.getJSONObject("data");
-                    Log.e("TAG", "获取停车场信息返回数据data："+datajson.toString());
+                    Log.e("TAG", "获取停车场信息返回数据data：" + datajson.toString());
                     if (reasonjson.equals("操作成功")) {
                         Log.e("TAG", "获取停车场信息成功");
                         pname = datajson.getString("pname");
                         addr = datajson.getString("addr");
                         tlot = datajson.getString("tlot");
-                        wxUrl=datajson.getString("wxUrl");
-                        aliUrl=datajson.getString("aliUrl");
-                        Constant.lat=datajson.getString("lat");
-                        Constant.lng=datajson.getString("lng");
-                        Constant.pname=pname;
-                        indexPname.setText("车场名称：" + pname);
-                        indexTlot.setText("总车位：" + tlot);//停车场总车位
-                        indexAddr.setText("地址信息："+addr);
-                        Constant.adds=addr;
-                        Log.e("TAG","微信支付地址："+wxUrl);
-                        Log.e("TAG","支付宝支付地址："+aliUrl);
+                        wxUrl = datajson.getString("wxUrl");
+                        aliUrl = datajson.getString("aliUrl");
+                        Constant.lat = datajson.getString("lat");
+                        Constant.lng = datajson.getString("lng");
+                        Constant.pname = pname;
+                        indexPname.setText(getString(R.string.parking_lot) + pname);
+                        indexTlot.setText(getString(R.string.total_parking) + tlot);//停车场总车位
+                        indexAddr.setText(getString(R.string.address_information) + addr);
+                        Constant.adds = addr;
+                        Log.e("TAG", "微信支付地址：" + wxUrl);
+                        Log.e("TAG", "支付宝支付地址：" + aliUrl);
 
                         getweather(Constant.lng, Constant.lat);
                     } else {
@@ -525,7 +531,7 @@ public class IndexActivity extends BaseActivity {
 
     //获取在场车数量和空车位的数量
     private void get_quantity(String url) {
-        String jsons = "{\"cmd\":\"176\",\"type\":\""+ Constant.TYPE+"\",\"code\":\""+ Constant.CODE+"\",\"dsv\":\""+ Constant.DSV+"\",\"sign\":\"abcd\"}";
+        String jsons = "{\"cmd\":\"176\",\"type\":\"" + Constant.TYPE + "\",\"code\":\"" + Constant.CODE + "\",\"dsv\":\"" + Constant.DSV + "\",\"sign\":\"abcd\"}";
         Log.e("TAG", jsons);
         OkHttpUtils.postString().url(url)
                 .content(jsons)
@@ -543,17 +549,18 @@ public class IndexActivity extends BaseActivity {
                     JSONObject rpjson = new JSONObject(response);
                     String reasonjson = rpjson.getString("reason");
                     JSONObject resultjson = rpjson.getJSONObject("result");
-                    JSONObject datajsonObject = resultjson.getJSONObject("data");
-                   // Log.e("TAG", datajsonObject.toString());
-                    if (reasonjson.equals("操作成功")) {
-                        int elot=datajsonObject.getInt("elot");
-                        int number=datajsonObject.getInt("number");
-                        int tlot=datajsonObject.getInt("tlot");
-                        if (shengyTv!=null){
-                            shengyTv.setText(String.valueOf(elot+tlot));
+                    int code = rpjson.getInt("code");
+                    // Log.e("TAG", datajsonObject.toString());
+                    if (code == 100) {
+                        JSONObject datajsonObject = resultjson.getJSONObject("data");
+                        int elot = datajsonObject.getInt("elot");
+                        int number = datajsonObject.getInt("number");
+                        int tlot = datajsonObject.getInt("tlot");
+                        if (shengyTv != null) {
+                            shengyTv.setText(String.valueOf(elot + tlot));
                         }
                         //App.surpluscar= String.valueOf(elot+tlot);
-                        if (pvcarTv!=null){
+                        if (pvcarTv != null) {
                             pvcarTv.setText(String.valueOf(number));
                         }
                     } else {
@@ -567,13 +574,14 @@ public class IndexActivity extends BaseActivity {
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onResume() {
 
-        Log.e("TAG","IndexOnResume");
+        Log.e("TAG", "IndexOnResume");
         username = (String) SPUtils.get(IndexActivity.this, Constant.USERNAME, "");
         indexUsername.setText(username);
-        Constant.username=username;
+        Constant.username = username;
         //heartbeat();
         //禁止vp滑动
         indexVp.setOnTouchListener(new View.OnTouchListener() {
@@ -588,9 +596,9 @@ public class IndexActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e("TAG","IndexOnStart");
-        App.serverurl=(String) SPUtils.get(IndexActivity.this, Constant.URL, "");
-        Log.e("TAG","IndexOnStart###主页服务器地址："+App.serverurl);
+        Log.e("TAG", "IndexOnStart");
+        App.serverurl = (String) SPUtils.get(IndexActivity.this, Constant.URL, "");
+        Log.e("TAG", "IndexOnStart###主页服务器地址：" + App.serverurl);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {//数据库的辅助类
         //执行sql语句
         db.execSQL(sql_utable);
 
-        String sql_insert="insert into "+  Constant.TABLE_USER+"("+ Constant.RRSTRING+") values('无备注放行')";
+        String sql_insert="insert into "+  Constant.TABLE_USER+"("+ Constant.RRSTRING+") values('"+context.getString(R.string.no_note_to_release)+"')";
         db.execSQL(sql_insert);//执行sql语句
 
         String sql_pic="create table pic(pid integer primary key autoincrement,path blob)";

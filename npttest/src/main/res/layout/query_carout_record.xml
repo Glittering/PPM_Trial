@@ -47,7 +47,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="@string/enter_correct_license_plate_number"
+                    android:text="@string/enter_the_license_plate_number"
                     android:textSize="16sp" />
 
                 <ImageView

@@ -340,4 +340,25 @@
     <string name="phone">电话</string>
     <string name="mailbox">邮箱</string>
     <string name="long_hours_at_work">上班时长</string>
+    <string name="inquire_about_the_presence_of_vehicles">查询在场车辆</string>
+    <string name="default_city">默认城市</string>
+    <string name="vehicle_inventory">车辆盘点</string>
+    <string name="record_of_violation">违规记录</string>
+    <string name="configure_printer">配置打印机</string>
+    <string name="online_update">在线更新</string>
+    <string name="current_version_of_the_latest_version">当前为最新版本</string>
+    <string name="set_com_info">设置该功能可以在输入车牌时首先添加城市</string>
+    <string name="no_note_to_release">无备注放行</string>
+    <string name="pick_ok">完成</string>
+    <string name="choice_of_language">选择语言</string>
+    <string name="simplified_chinese">简体中文</string>
+    <string name="traditional_chinese">繁體中文</string>
+    <string name="traditional_chinese_hk">繁體中文（香港）</string>
+    <string name="english_language">English</string>
+    <string name="application_will_be_restarted">确定选择语言后，应用将会重启</string>
+    <string-array name="tabTitles">
+        <item>入场记录</item>
+        <item>出场记录</item>
+        <item>收费记录</item>
+    </string-array>
 </resources>

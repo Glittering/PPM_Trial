@@ -11,7 +11,7 @@ public class Constant {
     public static String DOMEURL="http://ws.boleyun.cn/jcont";
     public static String TYPE="3";
     public static String DSV;
-    public static String CODE;
+    public static String CODE="ppm_test_parkos";
     public static String DOMECODE="ppm_test_parkos";
     public static String ID="id";
     public static String PASS="pass";
@@ -67,6 +67,7 @@ public class Constant {
     public static String testusername="testuser";
     public static String testuserpwd="123456";
     public static String domeUrl;
+    public static String LANGUAGE="language";
     public static String nocompressPath= Environment.getExternalStorageDirectory().toString() + "/DCIM/PlatePic/";//没压缩图片路径
     public static String compressPath=Environment.getExternalStorageDirectory() + "/ppm/";//压缩后图片路径
 

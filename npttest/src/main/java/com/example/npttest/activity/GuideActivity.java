@@ -189,7 +189,7 @@ public class GuideActivity extends BaseActivity implements MPermissionHelper.Per
         int code = acBinder.login(guideEt.getText().toString().trim());
         if (code == 0) {
             SPUtils.put(GuideActivity.this, "frist", false);
-            SPUtils.put(GuideActivity.this, "sn", false);
+            //SPUtils.put(GuideActivity.this, "sn", false);
             //new AlertDialog.Builder(SpalshActivity.this).setMessage("授权成功!").show();
             Toasty.success(this, getString(R.string.camera_authorized_successfully), Toast.LENGTH_SHORT, true).show();
             //Toast.makeText(this, "授权成功!", Toast.LENGTH_SHORT).show();

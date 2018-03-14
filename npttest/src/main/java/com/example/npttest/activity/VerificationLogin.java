@@ -1,5 +1,6 @@
 package com.example.npttest.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -270,6 +271,7 @@ public class VerificationLogin extends NoStatusbarActivity {
         });
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler mCountHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

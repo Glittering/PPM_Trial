@@ -34,7 +34,6 @@ import static com.example.npttest.fragment.Fragment1.shengyTv;
  */
 
 public class Heartbeat extends Service {
-    private int frequency;
     private int H_elot,H_olot;
     @Nullable
     @Override
@@ -112,7 +111,7 @@ public class Heartbeat extends Service {
 
     private void getheart(String url){
         String Sjson="{\"cmd\":\"128\",\"type\":\""+ Constant.TYPE+"\",\"code\":\""+ Constant.CODE+"\",\"dsv\":\""+ Constant.DSV+"\",\"dtime\":\""+gettime()+"\",\"spare\":\"0\",\"sign\":\"abcd\"}";
-        Log.e("TAG",Sjson);
+        Log.e("TAG","发送心跳命令："+Sjson);
         OkHttpUtils.postString().url(url)
                 .content(Sjson)
                 .mediaType(MediaType.parse("application/json; charset=utf-8"))
@@ -120,35 +119,24 @@ public class Heartbeat extends Service {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        //Toast.makeText(Heartbeat.this, frequency+"", Toast.LENGTH_SHORT).show();
-                            //Toasty.error(Heartbeat.this, "您的网络可能出了一点问题", Toast.LENGTH_SHORT, true).show();
-                            Log.e("TAG","您的网络可能出了一点问题");
+                        Log.e("TAG","心跳网络错误");
                     }
                     @Override
                     public void onResponse(String response, int id) {
                         JSONObject jsonObject = null;
+                        Log.e("TAG", "心跳返回结果："+response);
                         try {
                             jsonObject = new JSONObject(response);
                             String reasonjson = jsonObject.getString("reason");
                             int code=jsonObject.getInt("code");
+                            JSONObject resultjson = jsonObject.getJSONObject("result");
                             if (code==100) {
-                                JSONObject resultjson = jsonObject.getJSONObject("result");
                                 JSONObject datajson = resultjson.getJSONObject("data");
                                 H_elot= datajson.getInt("elot");
                                 H_olot= datajson.getInt("olot");
-                                Log.e("TAG", response);
-                                Log.e("TAG", datajson.toString());
-                                //Log.e("TAG", "成功");
                                 handler.sendEmptyMessage(0x0123);
                             } else {
-                                Log.e("TAG","连接已断开");
-                                frequency++;
-                                if (frequency==3){
-                                    //Toast.makeText(Heartbeat.this, "您的网络可能出了一点问题", Toast.LENGTH_SHORT).show();
-                                    //Toasty.error(Heartbeat.this, "您的网络可能出了一点问题", Toast.LENGTH_SHORT, true).show();
-                                    frequency=0;
-                                }
-                                //Toasty.error(Heartbeat.this, "连接已断开", Toast.LENGTH_SHORT, true).show();
+                                Log.e("TAG","心跳连接已断开");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -172,7 +160,6 @@ public class Heartbeat extends Service {
                     shengyTv.setText(String.valueOf(H_elot+H_olot));
                     App.surpluscar= String.valueOf(H_elot+H_olot);
                 }
-
             }else if (msg.what==0x0124){
                 String s= (String) SPUtils.get(Heartbeat.this, Constant.URL,"");
                 if (s!=null){

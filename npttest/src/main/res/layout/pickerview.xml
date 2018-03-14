@@ -31,7 +31,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="17dp"
             android:padding="8dp"
-            android:text="完成"
+            android:text="@string/pick_ok"
             android:textColor="#24AD9D"
             android:textSize="18sp" />
 

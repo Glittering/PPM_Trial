@@ -179,7 +179,7 @@ public class CaroutChargeActivity extends NoStatusbarActivity {
         Constant.comfirmYy = comfirmYy;
         Constant.snmon = snmon;
         Constant.ssmon = ssmon;
-        Constant.srmon = srmon + getString(R.string.yuan);
+        Constant.srmon = srmon + "元";
         Constant.carnum = carnum;
         Constant.cdtp = cdtp;
         Constant.pvrefresh = pvrefresh;
@@ -437,11 +437,13 @@ public class CaroutChargeActivity extends NoStatusbarActivity {
         //1.创建SpeechSynthesizer对象, 第二个参数：本地合成时传InitListener
         SpeechSynthesizer mTts = SpeechSynthesizer.createSynthesizer(this, null);
         //2.合成参数设置，详见《科大讯飞MSC API手册(Android)》SpeechSynthesizer 类
+
         mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
         mTts.setParameter(SpeechConstant.SPEED, "60");//设置语速
         mTts.setParameter(SpeechConstant.VOLUME, "100");//设置音量，范围0~100
         //mTts.setParameter(SpeechConstant.PITCH, "50");// 设置音调
         mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD); //设置云端
+        //mTts.setParameter(SpeechConstant.LANGUAGE,  "en_us"); //设置语言
 
         //设置合成音频保存位置（可自定义保存位置），保存在“./sdcard/iflytek.pcm”
         //保存在SD卡需要在AndroidManifest.xml添加写SD卡权限
@@ -452,8 +454,11 @@ public class CaroutChargeActivity extends NoStatusbarActivity {
         //mTts.startSpeaking(carnum+"出场成功！本次收费"+srmon+"元", mSynListener);
         char[] carnumber = carnum.toCharArray();
         if (carnumber.length == 7) {
-            mTts.startSpeaking(String.valueOf(carnumber[0]) + " " + String.valueOf(carnumber[1]) + " " + String.valueOf(carnumber[2])
-                    + " " + String.valueOf(carnumber[3]) + " " + String.valueOf(carnumber[4]) + " " + String.valueOf(carnumber[5]) + " " + String.valueOf(carnumber[6]) + "，" + "出场成功，本次收费" + Constant.srmon + "，停车时间" + pktime, mSynListener);
+            mTts.startSpeaking(String.valueOf(carnumber[0]) + " " + String.valueOf(carnumber[1])
+                    + " " + String.valueOf(carnumber[2])
+                    + " " + String.valueOf(carnumber[3]) + " " + String.valueOf(carnumber[4]) + " "
+                    + String.valueOf(carnumber[5]) + " " + String.valueOf(carnumber[6]) + "，"
+                    + "出场成功，本次收费" + Constant.srmon + "，停车时间" + pktime, mSynListener);
         } else if (carnumber.length == 8) {
             mTts.startSpeaking(String.valueOf(carnumber[0]) + " " + String.valueOf(carnumber[1]) + " " + String.valueOf(carnumber[2])
                     + " " + String.valueOf(carnumber[3]) + " " + String.valueOf(carnumber[4]) + " " + String.valueOf(carnumber[5]) + " " + String.valueOf(carnumber[6]) + " " + String.valueOf(carnumber[7]) + "，" + "出场成功，本次收费" + Constant.srmon + "，停车时间" + pktime, mSynListener);

@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">掌上停车管理</string>
+    <!-- 授权验证失败 -->
+    <string name="failed_file_timeout">授权文件已过期，请重新申请授权文件！</string>
+    <string name="failed_noFile_find">没有找到相应的本地授权许可数据文件,请检查程序是否已经激活！</string>
+    <string name="failed_noAuth">程序未激活</string>
+    <string name="failed_init_error">初始化失败，请检查是否已经激活软件</string>
+    <string name="failed_File_error">模型文件操作失败！</string>
+    <string name="plate_number">车牌号码</string>
+    <string name="plate_color">车牌颜色</string>
+    <string name="plate_color_code">车牌颜色代码</string>
+    <string name="plate_type_code">车牌类型代码</string>
+    <string name="plate_reliability">整牌可信度</string>
+    <string name="plate_leftupper_pointX">车牌左上点横坐标</string>
+    <string name="plate_leftupper_pointY">车牌左上点纵坐标</string>
+    <string name="plate_rightdown_pointX">车牌右下点横坐标</string>
+    <string name="plate_rightdown_pointY">车牌右下点纵坐标</string>
+    <string name="plate_car_color">车的颜色</string>
+    <string name="latest_version">已经是最新版本</string>
     <string name="about_us">关于我们</string>
     <string name="ppm_1_2_3">掌上停车管理 1.2.3</string>
     <string name="telephone_num">全国热线</string>
@@ -98,7 +116,7 @@
     <string name="vehicle_type_">车辆类型：</string>
     <string name="billing_type_">计费类型：</string>
     <string name="admission_time_">入场时间：</string>
-    <string name="end">完 成</string>
+    <string name="end">完  成</string>
     <string name="yuan">元</string>
     <string name="print_too_hot">打印过热</string>
     <string name="printer_is_abnormal">打印机异常！</string>
@@ -306,14 +324,15 @@
     <string name="charge_amount_">收费金额：</string>
     <string name="modify">修改</string>
     <string name="appear">出场</string>
-    <string name="use_help_carin_info">软件主页有三个按钮，入场、出场和手动输入。车辆入场有两种方式，第一种是识别车牌进行入场操作，点击圆形入场按钮进入相机进行识别车牌执行入场进入入场界面，此时需要选择车辆类型（摩托车，小型车，中型车，大型车），默认选择是小型车，点击确定入场成功。第二种是手动输入车牌号码入场，同样选择车辆类型，点击入场入场成功。如还需添加图片，可点击上方相机圆形按钮，进行拍照，或者不想输入车牌时也可进行车牌识别。  【注意】如出现入场失败（禁止通行），可能操作太过频繁重复入场，请稍后再试。入场有图片时需要上传图片，非WiFi网络的时候会提示是否上传照片，点击取消则不上传图片，确定继续上传图片。</string>
-    <string name="about_vehicle_appearance_info">车辆出场操作和入场操作大同小异，除了上诉提到的车牌识别出入场和手动输入车牌出入场车辆出场还多了一种方式，在主页点击在场车辆进入在场车辆列表页面。在场车辆列表每个列表都有一个修改和出场的按钮，修改则是修改校对车牌号码，出场就是执行出场操作了。点击出场都会进入到车辆收费的界面，车辆收费显示收费信息和金额。收费提供了三种收费方式，现金支付、微信支付、支付宝支付。点击确定收费按钮显示收费的方式，微信支付和支付宝会显示出二维码，支付完成后，自动跳转到出场成功的页面。  【注意】出场收费如显示禁止通行，请查看禁止通行的原由，是否频繁操作重复进出，如为通道闸禁止通行，请检查平台是否设置费率。微信支付和支付宝支付出现了异常，车主已经支付，但软件因某种异常（如网络故障）无法收到通知信息，请检查在场车辆列表中该车辆是否出场。</string>
+    <string name="use_help_carin_info">软件主页有三个按钮，入场、出场和手动输入。车辆入场有两种方式，第一种是识别车牌进行入场操作，点击圆形入场按钮进入相机进行识别车牌执行入场进入入场界面，此时需要选择车辆类型（摩托车，小型车，中型车，大型车），默认选择是小型车，点击确定入场成功。第二种是手动输入车牌号码入场，同样选择车辆类型，点击入场入场成功。如还需添加图片，可点击上方相机圆形按钮，进行拍照，或者不想输入车牌时也可进行车牌识别。\n\n  【注意】如出现入场失败（禁止通行），可能操作太过频繁重复入场，请稍后再试。入场有图片时需要上传图片，非WiFi网络的时候会提示是否上传照片，点击取消则不上传图片，确定继续上传图片。</string>
+    <string name="about_vehicle_appearance_info">车辆出场操作和入场操作大同小异，除了上诉提到的车牌识别出入场和手动输入车牌出入场车辆出场还多了一种方式，在主页点击在场车辆进入在场车辆列表页面。在场车辆列表每个列表都有一个修改和出场的按钮，修改则是修改校对车牌号码，出场就是执行出场操作了。点击出场都会进入到车辆收费的界面，车辆收费显示收费信息和金额。收费提供了三种收费方式，现金支付、微信支付、支付宝支付。点击确定收费按钮显示收费的方式，微信支付和支付宝会显示出二维码，支付完成后，自动跳转到出场成功的页面。 \n\n 【注意】出场收费如显示禁止通行，请查看禁止通行的原由，是否频繁操作重复进出，如为通道闸禁止通行，请检查平台是否设置费率。微信支付和支付宝支付出现了异常，车主已经支付，但软件因某种异常（如网络故障）无法收到通知信息，请检查在场车辆列表中该车辆是否出场。</string>
     <string name="about_the_default_city_info">默认城市设置是为了方便用户输入车牌号码的时候方便一点，可选择常用的城市车牌号码，提高用户输入车牌号码的速度，更快捷，默认城市的设置在主页选项的页面，进入默认城市设置界面，可以开启和关闭默认城市的选择，开启后，默认选择的是“京A”点击弹出城市选择器，选择需要的城市。便可以在输出车牌的时候看见选择的默认城市了。</string>
     <string name="about_free_release_info">上面我们提到了出场时还有免费出场的功能，比如一些特殊的情况，车辆收费的界面上有三个按钮（取消出场、确定出场、免费出场），点击免费出场进入选择免费出场的理由界面，点击选择或添加理由可以执行出场的操作。理由默认显示的是“无理由放行”，如有其它的需要，您可以点击旁边的修改按钮修改理由，或者点击上方的“+”添加理由，理由添加之后的话，会自动的保存。如太多了，不需要的可以滑动理由来进行删除。</string>
     <string name="modification_of_parking_spaces_and_license_plates_info">如有发现空车位信息不正确的时候，需要修改空车位信息，点击主页剩余车位进入修改空车位，如入场时车牌号码输入不正确需要修改车牌号码，进入在场车辆页面点击修改进入修改车牌号页面。输入修改后的车牌号码，直接返回就可以自动修改完成了。</string>
     <string name="about_the_user_off_duty_info">之前我们提到用户登录上班，有两种方式账号密码登录，验证码登录，下班也是有两种方式，软件会自动记录登录方式，账号下班输入密码，验证码下班请求获取短信验证码下班。下班界面会显示上班时间，上班的收费总额。</string>
     <string name="asbout_the_query">关于查询</string>
     <string name="asbout_the_query_info">查询有查询记录（入场记录，出场记录，收费记录）和查询在场车辆，查询记录又分为按时间查询和输入车牌查询，时间查询是选择一个时间段，输入车牌则是精准查询记录。点击主页上方的放大镜按钮进入查询，或者在主页选项当中选择查询记录或者查询在场车辆。按时间查询点击上方时间会出现时间选择器选择时间，按车牌查询在记录页面点击上方的放大镜进入输入车牌查询记录。查询在场车辆，输入至少三位车牌号查询车牌号。</string>
+    <string name="about_user_login_info">用户登录用户是无法自身创建账号和密码的，账号密码需要平台提供。登录提供了两种登录方式，输入用户名密码登录和手机获取验证码登录，登录成功进入主页。 \n\n 【注意】如输入用户名和密码登录时登录失败，请检查该设备是否登记绑定，是否添加所属的停车场，如验证码登录无法获取到验证码，请检查输入的手机号码是否正确，手机号码是否能正常使用，如手机号码正常，可能是获取手机验证码操作频繁，请稍后再试。如验证码登录失败，请检查该手机号码是否添加到服务器当中。</string>
     <string name="avatar">头像</string>
     <string name="names">姓名</string>
     <string name="nickname">昵称</string>
@@ -321,4 +340,25 @@
     <string name="phone">电话</string>
     <string name="mailbox">邮箱</string>
     <string name="long_hours_at_work">上班时长</string>
+    <string name="inquire_about_the_presence_of_vehicles">查询在场车辆</string>
+    <string name="default_city">默认城市</string>
+    <string name="vehicle_inventory">车辆盘点</string>
+    <string name="record_of_violation">违规记录</string>
+    <string name="configure_printer">配置打印机</string>
+    <string name="online_update">在线更新</string>
+    <string name="current_version_of_the_latest_version">当前为最新版本</string>
+    <string name="set_com_info">设置该功能可以在输入车牌时首先添加城市</string>
+    <string name="no_note_to_release">无备注放行</string>
+    <string name="pick_ok">完成</string>
+    <string name="choice_of_language">选择语言</string>
+    <string name="simplified_chinese">简体中文</string>
+    <string name="traditional_chinese">繁體中文</string>
+    <string name="traditional_chinese_hk">繁體中文（香港）</string>
+    <string name="english_language">English</string>
+    <string name="application_will_be_restarted">确定选择语言后，应用将会重启</string>
+    <string-array name="tabTitles">
+        <item>入场记录</item>
+        <item>出场记录</item>
+        <item>收费记录</item>
+    </string-array>
 </resources>

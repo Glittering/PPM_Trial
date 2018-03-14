@@ -33,13 +33,16 @@ public class Fragment2 extends Fragment {
     My_Viewpager fg2Vp;
     private FragmentManager fragmentManager;
     private List<Fragment> list = new ArrayList<Fragment>();
-    private String tabTitles[] = new String[]{getString(R.string.admission_records), getString(R.string.appearance_record), getString(R.string.charge_records)};
+    //private String tabTitles[] = new String[]{getString(R.string.admission_records), getString(R.string.appearance_record), getString(R.string.charge_records)};
+    private String[] tabTitles;
+    //private String tabTitles[] = new String[]{"入场", "出场","收费"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment2, null);
         ButterKnife.bind(this, v);
         fg2Vp.setOffscreenPageLimit(2);
+        tabTitles = getResources().getStringArray(R.array.tabTitles);
         //获取碎片管理者对象
         fragmentManager = getChildFragmentManager();
         list.add(new Fg2_Fragment1());

@@ -60,7 +60,7 @@
     <!-- 开机自启动权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!--android:persistent="true"  设置不被系统kill掉-->
+    <!-- android:persistent="true"  设置不被系统kill掉 -->
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -315,7 +315,8 @@
         <activity android:name=".activity.UseHelpModifyInfo" />
         <activity android:name=".activity.UseHelpFreeOut" />
         <activity android:name=".activity.UseHelpCommonCity" />
-        <activity android:name=".activity.UseHelpOffwork"></activity>
+        <activity android:name=".activity.UseHelpOffwork" />
+        <activity android:name=".activity.ChoiceOfLanguage"></activity>
     </application>
 
 </manifest>
