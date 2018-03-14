@@ -24,7 +24,7 @@ import java.util.Locale;
  */
 
 public class App extends Application {
-    public static String serverurl;//云地址
+    public static String serverurl="http://ws.boleyun.cn/jcont";//云地址
     public static String surpluscar;//剩余车位
     public static DBHelper dbHelper = null;
     public static boolean goRefresh = true;
